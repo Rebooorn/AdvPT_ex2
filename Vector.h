@@ -4,16 +4,37 @@
 #include "Matrix.h"
 
 template<typename T>
-class Vector : Matrix<T> {
+class Vector : public Matrix<T> {
 private:
 	int length_;
-	T* p_;	//pointor to data
+	//T* pp_;	//pointor to data
 public:
-	Vector() :length_(3),Matrix<T>(3,1) { 
-		cout << "default Vector constructor" << endl;
-		//cout << this->sizeX_ << endl; 
-	}
+	Vector();
+	Vector(int);
+	Vector& operator=(const Vector& rhs);
 };
+
+
+template<typename T>
+Vector<T>::Vector():length_(4),Matrix<T>(4,1){} //default constructor
+
+template<typename T>
+Vector<T>::Vector(int length):length_(length),Matrix<T>(length,1){} //assign constructor
+
+
+template<typename T>
+Vector<T>& Vector<T>::operator= (const Vector<T>& rhs){
+    this->sizeX_=rhs.sizeX_;
+    this->sizeY_=rhs.sizeY_;
+    this->p_=new double[this->sizeX_*this->sizeY_];
+	for (int i = 0; i < this->sizeX_*this->sizeY_;i++) {
+		(this->p_)[i] = rhs.p_[i];
+	}
+    return *this;
+}
+
+    // default constructor, create a 3*1 matrix
+
 	/*
 	Vector();	//default constructor
 	Vector(int length, T init = 1);
@@ -31,7 +52,7 @@ public:
 	  friend bool operator== <T>(const Vector& lhs, const Vector& rhs);//operator==
 	  friend bool operator!= <T>(const Vector& lhs, const Vector& rhs);//operator!=
 
-	
+
 	*/
 
 #endif // !VECTOR_H
