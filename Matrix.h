@@ -33,28 +33,18 @@ class Matrix{
 		friend Matrix operator-<T>(const Matrix& lhs, const Matrix& rhs);//operator -
 		friend Matrix operator*<T>(const Matrix& lhs, const Matrix& rhs);// operator *
 		 /*????*///friend ostream& operator<< <T>(ostream &os, const Matrix& rhs);//operator <<
-		template<typename T> friend ostream& operator<< (ostream& os, const Matrix<T>& rhs);
+		template<typename T1> friend ostream& operator<< (ostream& os, const Matrix<T1>& rhs);
 		friend bool operator== <T>(const Matrix& lhs, const Matrix& rhs);//operator==
 		friend bool operator!= <T>(const Matrix& lhs, const Matrix& rhs);//operator!=
 		friend T* getbegin(const Matrix& m);
 		// output matrix;
 
-	private:
+	protected:
 		int sizeX_, sizeY_;
 		T init_;
 		T* p_;
 };
 
-/*
-template<typename T>
-class Vector : Matrix<T> {
-private:
-	int length_;
-	T* p_;	//pointor to data
-public:
-	Vector() :length_(1) { cout << "sssss" << endl; };
-};
-*/
 
 //default constructor
 template<typename T>
@@ -101,12 +91,10 @@ Matrix<T>& Matrix<T>::operator=(const Matrix<T> &rhs){
 //    cout<< "copy-assignment operator"<<endl;
     sizeX_= rhs.sizeX_;
     sizeY_= rhs.sizeY_;
-	//T* p= p_;
+    p_=new double[sizeX_*sizeY_];
 	for (int i = 0; i < sizeX_*sizeY_;i++) {
 		p_[i] = rhs.p_[i];
-      //  p_++;
 	}
-	//p_=p;
     return *this;
 }
 //return element reference
