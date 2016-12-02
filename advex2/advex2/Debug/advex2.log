@@ -1,4 +1,4 @@
 ﻿  Mytest.cpp
-  LINK : D:\liuchang\workplace\advex2\advex2\Debug\advex2.exe not found or not built by the last incremental link; performing full link
-  advex2.vcxproj -> D:\liuchang\workplace\advex2\advex2\Debug\advex2.exe
-  advex2.vcxproj -> D:\liuchang\workplace\advex2\advex2\Debug\advex2.pdb (Full PDB)
+d:\liuchang\workplace\advpt_ex2\matrix.h(175): warning C4172: returning address of local variable or temporary: tmp
+  advex2.vcxproj -> D:\liuchang\workplace\AdvPT_ex2\advex2\Debug\advex2.exe
+  advex2.vcxproj -> D:\liuchang\workplace\AdvPT_ex2\advex2\Debug\advex2.pdb (Full PDB)

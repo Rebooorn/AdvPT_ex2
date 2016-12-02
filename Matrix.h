@@ -1,6 +1,7 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
+//#include "Vector.h"
 #include <iostream>
 #include <cassert>
 
@@ -9,16 +10,16 @@ using std::cout;
 using std::ostream;
 
 template<typename T> class Matrix;
+template<typename T> class Vector;
 template<typename T> Matrix<T> operator+ (const Matrix<T>& lhs, const Matrix<T>& rhs);
 template<typename T> Matrix<T> operator- (const Matrix<T>& lhs, const Matrix<T>& rhs);
-template<typename T> Matrix<T> operator* (const Matrix<T>& lhs, const Matrix<T>& rhs);
 template<typename T> bool operator== (const Matrix<T>& lhs, const Matrix<T>& rhs);
 template<typename T> bool operator!= (const Matrix<T>& lhs, const Matrix<T>& rhs);
-//template<typename T> ostream& operator<<(ostream &os, const Matrix<T>& rhs);
 
 template<typename T>
 class Matrix{
 	public:
+		friend class Vector<T>;
 		//use 1-dimension array to store matrix
 		Matrix();// default construct creates a 4*4 matrix of 1;
 		Matrix(int sizeX,int sizeY,T init = 1);// assignment constructor
@@ -29,9 +30,12 @@ class Matrix{
         Matrix& operator+=(const Matrix& rhs);// operator +=
 		Matrix& operator-=(const Matrix& rhs);
 		Matrix& operator*=(const Matrix& rhs);
+		Matrix& inverseDiagonal()const;		//extract diagonal and get inverse
+		Vector<T> operator* (const Vector<T>&)const;
+		Matrix operator* (const Matrix&)const;
 		friend Matrix operator+<T>(const Matrix& lhs, const Matrix& rhs);// operator +
 		friend Matrix operator-<T>(const Matrix& lhs, const Matrix& rhs);//operator -
-		friend Matrix operator*<T>(const Matrix& lhs, const Matrix& rhs);// operator *
+		//friend Matrix operator*<T>(const Matrix& lhs, const Matrix& rhs);// operator *
 		 /*????*///friend ostream& operator<< <T>(ostream &os, const Matrix& rhs);//operator <<
 		template<typename T1> friend ostream& operator<< (ostream& os, const Matrix<T1>& rhs);
 		friend bool operator== <T>(const Matrix& lhs, const Matrix& rhs);//operator==
@@ -51,6 +55,9 @@ template<typename T>
 Matrix<T>::Matrix():sizeX_(4),sizeY_(4),init_(1){
    // cout<< "default constructor"<<endl;
     p_ =new T[sizeX_*sizeY_];
+
+
+
     for(int i=0;i<sizeX_*sizeY_;i++){
         p_[i]= init_;
     }
@@ -151,6 +158,40 @@ Matrix<T>& Matrix<T>::operator*=(const Matrix<T>& rhs) {
 	p_ = p;
 	return *this;
 }
+
+template<typename T>
+Matrix<T>& Matrix<T>::inverseDiagonal() const{
+	// extract the diagonal of matrix, and get the inverse matrix of the resulting diagonal matrix
+	assert(sizeX_ == sizeY_);		//rhs should be square matrix
+	Matrix<T> tmp(sizeX_,sizeY_);
+	
+	tmp.p_ = new T[sizeX_*sizeY_];
+	for (int i = 0;i < sizeX_;i++) {
+		for (int j = 0;j < sizeY_;j++) {
+			if (i == j) tmp.p_[i*sizeY_ + j] = 1.0/p_[i*sizeY_ + j];
+			else tmp.p_[i*sizeY_ + j] = 0;
+		}
+	}
+	return tmp;
+}
+
+
+template<typename T>
+Vector<T> Matrix<T>::operator* (const Vector<T>& o) const{
+	assert(sizeY_ == o.length_);
+	Vector<T> res(sizeX_);
+	T tmp = 0;
+	for (int i = 0;i < sizeX_;i++) {
+		for (int j = 0;j < sizeY_;j++) {
+			tmp += p_[i*sizeY_ + j] * o.p_[j];
+		}
+		res.p_[i] = tmp;
+		tmp = 0;
+	}
+	return res;
+
+}
+
 // operator +
 template<typename T>
 Matrix<T> operator+(const Matrix<T>& lhs, const Matrix<T>& rhs){
@@ -176,18 +217,20 @@ Matrix<T> operator-(const Matrix<T>& lhs, const Matrix<T>& rhs) {
 	tmp -= rhs;
 	return tmp;
 }
+
+
 //operator *
 template<typename T>
-Matrix<T> operator*(const Matrix<T>& lhs, const Matrix<T>& rhs){		//pay attention to matrix size
+Matrix<T> Matrix<T>::operator*(const Matrix<T>& rhs)const{		//pay attention to matrix size
 //    cout<< "times operation"<<endl;
-	assert(lhs.sizeY_ == rhs.sizeX_);
-	T* pl=lhs.p_;	//left operand
+	assert(sizeY_ == rhs.sizeX_);
+	T* pl=p_;	//left operand
     T* pr=rhs.p_;	//right oprand
-    Matrix<T> prod(lhs.sizeX_,rhs.sizeY_,0.0);
+    Matrix<T> prod(sizeX_,rhs.sizeY_,0.0);
     T* pt=prod.p_;		//product
     for (int i=0;i<prod.sizeX_;i++){
         for (int j=0;j<prod.sizeY_;j++){
-            pl = lhs.p_+i*lhs.sizeY_;    //reset pointor
+            pl = p_+i*sizeY_;    //reset pointor
             pr = rhs.p_+j;
             for(int m=0;m<lhs.sizeY_;m++){
                 * pt += (*pl)*(*pr);
@@ -199,6 +242,7 @@ Matrix<T> operator*(const Matrix<T>& lhs, const Matrix<T>& rhs){		//pay attentio
     }
     return prod;
 }
+
 
 template<typename T>
 ostream& operator<<(ostream &os, const Matrix<T>& rhs){
