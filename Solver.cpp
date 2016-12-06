@@ -2,7 +2,7 @@
 #include <chrono>
 #include <ctime>
 
-#include "Matrix.h"
+//#include "Matrix.h"
 #include "Vector.h"
 #include "Stencil.h"
 
@@ -11,7 +11,7 @@
 
 template<typename T>
 //void solve (const Matrix<T>& A, const Vector<T>& b, Vector<T>& u) {
-void solve(const MatrixLike<T, Matrix<T> >& A, const Vector<T>& b, Vector<T>& u) {
+void solve(const MatrixLike<T, Stencil<T> >& A, const Vector<T>& b, Vector<T>& u) {
 	const size_t numGridPoints = u.size( );
 	double initRes = (b - A * u).l2Norm( ); // determine the initial residual
 	double curRes = initRes;
@@ -56,7 +56,7 @@ void testFullMatrix (const int numGridPoints) {
 	for (int x = 0; x < numGridPoints; ++x) {
 		b(x) = sin(2. * PI * (x / (double)(numGridPoints - 1)));
 	}
-
+/*
 	std::cout << "Initialization complete\n";
 	cout << A << endl;
 	// TODO: start timing
@@ -72,8 +72,9 @@ void testFullMatrix (const int numGridPoints) {
 	//Question 1: why elapsed time differs in every run?
 
 	// for improved #1:		  size:  17  || 33   || 65    || 129
-	//					iteration:	     ||      ||       ||     
+	//					iteration:	     ||      ||       ||
 	//					time:		     ||      ||       ||         ms
+	*/
 }
 
 void testStencil (const int numGridPoints) {
@@ -81,13 +82,34 @@ void testStencil (const int numGridPoints) {
 	// the stencil can be set up using
 	const double hx = 1. / (numGridPoints - 1);
 	const double hxSq = hx * hx;
+    std::chrono::time_point<std::chrono::system_clock> start, end;		//timer start, end
+
+
+	std::cout << "Starting full matrix solver for " << numGridPoints << " grid points, using Stencil" << std::endl;
+
 	Stencil<double> ASten( { { 0, 1. } }, { { -1, 1. / hxSq },{ 0, -2. / hxSq },{ 1, 1. / hxSq } });
+	Vector<double> u(numGridPoints, 0.);
+	Vector<double> b(numGridPoints, 0.);
+
+	ASten.setSize(numGridPoints);
+	for (int x = 0; x < numGridPoints; ++x) {
+		b(x) = sin(2. * PI * (x / (double)(numGridPoints - 1)));
+	}
+
+	std::cout << "Initialization complete\n";
+	start = std::chrono::system_clock::now();
+	solve(ASten, b, u);
+	end = std::chrono::system_clock::now();
+	std::chrono::duration<double> elapsedTime = end - start;
+	cout << "elapsed time: " << elapsedTime.count() << "s" << endl;
+
+
 
 }
 
 int main(int argc, char** argv) {
 	testFullMatrix( 33 );
-	testStencil( 32 );
+	testStencil( 33 );
 
 	return 0;
 }

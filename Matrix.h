@@ -10,6 +10,7 @@ using std::ostream;
 template<typename T, class Derived> class MatrixLike;
 template<typename T> class Matrix;
 template<typename T> class Vector;
+template<typename T> class Stencil;
 template<typename T> Matrix<T> operator+ (const Matrix<T>& lhs, const Matrix<T>& rhs);
 template<typename T> Matrix<T> operator- (const Matrix<T>& lhs, const Matrix<T>& rhs);
 template<typename T> bool operator== (const Matrix<T>& lhs, const Matrix<T>& rhs);
@@ -19,6 +20,7 @@ template<typename T>
 class Matrix: public MatrixLike< T,Matrix<T> >{
 	public:
 		friend class Vector<T>;
+		friend class Stencil<T>;
 		//use 1-dimension array to store matrix
 		Matrix();// default construct creates a 4*4 matrix of 1;
 		Matrix(int sizeX,int sizeY,T init = 1);// assignment constructor
@@ -169,7 +171,7 @@ Matrix<T> Matrix<T>::inverseDiagonal() const{
 	// extract the diagonal of matrix, and get the inverse matrix of the resulting diagonal matrix
 	assert(sizeX_ == sizeY_);		//rhs should be square matrix
 	Matrix<T> tmp(sizeX_,sizeY_);
-	
+
 	tmp.p_ = new T[sizeX_*sizeY_];
 	for (int i = 0;i < sizeX_;i++) {
 		for (int j = 0;j < sizeY_;j++) {
