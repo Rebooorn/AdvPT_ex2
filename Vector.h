@@ -1,12 +1,11 @@
-#ifndef VECTOR_H
-#define VECTOR_H
+#pragma once
 
 #include "Matrix.h"
 
 template<typename T> class Matrix;
 template<typename T> class Vector;
-template<typename T> Vector<T>& operator+ (const Vector<T>& lhs, const Vector<T>& rhs);
-template<typename T> Vector<T>& operator- (const Vector<T>& lhs, const Vector<T>& rhs);
+template<typename T> Vector<T> operator+ (const Vector<T>& lhs, const Vector<T>& rhs);
+template<typename T> Vector<T> operator- (const Vector<T>& lhs, const Vector<T>& rhs);
 
 
 template<typename T>
@@ -24,8 +23,8 @@ public:
 	
 	Vector& operator=(const Vector&);
 	Vector& operator=(const Matrix&);
-	friend Vector& operator+<T> (const Vector&, const Vector&);
-	friend Vector& operator-<T> (const Vector&, const Vector&);
+	friend Vector operator+<T> (const Vector&, const Vector&);
+	friend Vector operator-<T> (const Vector&, const Vector&);
 	T& operator()(int)const;
 	double l2Norm()const;
 	int size()const;
@@ -45,6 +44,8 @@ Vector<T>::Vector(const Vector<T>& orig):
 	length_(orig.length_)
 {	//define by another vector
 	this->p_ = new T[length_];
+	sizeX_ = length_;
+	sizeY_ = 1;
 	for (int i = 0;i < length_;i++) {
 		this->p_[i] = orig.p_[i];
 	}
@@ -79,7 +80,7 @@ Vector<T>& Vector<T>::operator= (const Matrix<T>& rhs) {
 }
 
 template<typename T>
-Vector<T>& operator+(const Vector<T>& lhs, const Vector<T>& rhs) {
+Vector<T> operator+(const Vector<T>& lhs, const Vector<T>& rhs) {
 	assert(lhs.length_ == rhs.length_);
 	Vector<T> tmp(lhs.length_, 0.0);
 	for (int i = 0;i < tmp.length_;i++) {
@@ -89,7 +90,7 @@ Vector<T>& operator+(const Vector<T>& lhs, const Vector<T>& rhs) {
 }
 
 template<typename T>
-Vector<T>& operator-(const Vector<T>& lhs, const Vector<T>& rhs) {
+Vector<T> operator-(const Vector<T>& lhs, const Vector<T>& rhs) {
 	assert(lhs.length_ == rhs.length_);
 	Vector<T> tmp(lhs.length_, 0.0);
 	for (int i = 0;i < tmp.length_;i++) {
@@ -116,4 +117,4 @@ template<typename T>
 int Vector<T>::size()const {
 	return length_;
 }
-#endif // !VECTOR_H
+

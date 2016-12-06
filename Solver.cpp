@@ -1,15 +1,18 @@
 #include <iostream>
+#include <chrono>
+#include <ctime>
 
 #include "Matrix.h"
 #include "Vector.h"
 #include "Stencil.h"
 
+
 #define PI 3.141592653589793
 
 template<typename T>
-void solve (const Matrix<T>& A, const Vector<T>& b, Vector<T>& u) {
+//void solve (const Matrix<T>& A, const Vector<T>& b, Vector<T>& u) {
+void solve(const MatrixLike<T, Matrix<T> >& A, const Vector<T>& b, Vector<T>& u) {
 	const size_t numGridPoints = u.size( );
-
 	double initRes = (b - A * u).l2Norm( ); // determine the initial residual
 	double curRes = initRes;
 	std::cout << "Initial residual:\t\t" << initRes << std::endl;
@@ -33,6 +36,8 @@ void solve (const Matrix<T>& A, const Vector<T>& b, Vector<T>& u) {
 void testFullMatrix (const int numGridPoints) {
 	const double hx = 1. / (numGridPoints - 1);
 	const double hxSq = hx * hx;
+	std::chrono::time_point<std::chrono::system_clock> start, end;		//timer start, end
+
 
 	std::cout << "Starting full matrix solver for " << numGridPoints << " grid points" << std::endl;
 
@@ -53,21 +58,35 @@ void testFullMatrix (const int numGridPoints) {
 	}
 
 	std::cout << "Initialization complete\n";
-
+	cout << A << endl;
 	// TODO: start timing
+	start = std::chrono::system_clock::now();
 	solve(A, b, u);
+	end = std::chrono::system_clock::now();
+	std::chrono::duration<double> elapsedTime = end - start;
+	cout << "elapsed time: " << elapsedTime.count() << "s" << endl;
 	// TODO: end timing and print elapsed time
+	// for primitive methods: size:  17  || 33   || 65    || 129
+	//					iteration:	146  || 594  || 2386  || 9553
+	//					time:		5.35 || 23.8 || 271.8 || 3715.8  ms
+	//Question 1: why elapsed time differs in every run?
+
+	// for improved #1:		  size:  17  || 33   || 65    || 129
+	//					iteration:	     ||      ||       ||     
+	//					time:		     ||      ||       ||         ms
 }
 
 void testStencil (const int numGridPoints) {
 	// TODO: add stencil code
 	// the stencil can be set up using
-	//		Stencil<double> ASten({ { 0, 1. } }, { { -1, 1. / hxSq },{ 0, -2. / hxSq },{ 1, 1. / hxSq } });
+	const double hx = 1. / (numGridPoints - 1);
+	const double hxSq = hx * hx;
+	Stencil<double> ASten( { { 0, 1. } }, { { -1, 1. / hxSq },{ 0, -2. / hxSq },{ 1, 1. / hxSq } });
 
 }
 
 int main(int argc, char** argv) {
-	testFullMatrix( 32 );
+	testFullMatrix( 33 );
 	testStencil( 32 );
 
 	return 0;

@@ -1,7 +1,5 @@
-#ifndef MATRIX_H
-#define MATRIX_H
+#pragma once
 
-//#include "Vector.h"
 #include <iostream>
 #include <cassert>
 
@@ -9,6 +7,7 @@ using std::endl;
 using std::cout;
 using std::ostream;
 
+template<typename T, class Derived> class MatrixLike;
 template<typename T> class Matrix;
 template<typename T> class Vector;
 template<typename T> Matrix<T> operator+ (const Matrix<T>& lhs, const Matrix<T>& rhs);
@@ -17,7 +16,7 @@ template<typename T> bool operator== (const Matrix<T>& lhs, const Matrix<T>& rhs
 template<typename T> bool operator!= (const Matrix<T>& lhs, const Matrix<T>& rhs);
 
 template<typename T>
-class Matrix{
+class Matrix: public MatrixLike< T,Matrix<T> >{
 	public:
 		friend class Vector<T>;
 		//use 1-dimension array to store matrix
@@ -26,11 +25,12 @@ class Matrix{
 		Matrix(const Matrix& orig);//copy assignment
 		~Matrix();//delete constructor
         Matrix& operator=(const Matrix &rhs);//operator =
-		T& operator()(int row, int col)const;// return matrix element
+		T& operator()(int row, int col)override;// return matrix element
+		const T& operator()(int, int)const override;
         Matrix& operator+=(const Matrix& rhs);// operator +=
 		Matrix& operator-=(const Matrix& rhs);
 		Matrix& operator*=(const Matrix& rhs);
-		Matrix& inverseDiagonal()const;		//extract diagonal and get inverse
+		Matrix inverseDiagonal()const;		//extract diagonal and get inverse
 		Vector<T> operator* (const Vector<T>&)const;
 		Matrix operator* (const Matrix&)const;
 		friend Matrix operator+<T>(const Matrix& lhs, const Matrix& rhs);// operator +
@@ -106,9 +106,14 @@ Matrix<T>& Matrix<T>::operator=(const Matrix<T> &rhs){
 }
 //return element reference
 template<typename T>
-T& Matrix<T>::operator()(int row, int col)const{
+T& Matrix<T>::operator()(int row, int col){
  //   cout<< "element assignment"<<endl;
     return p_[row*sizeY_+col];
+}
+
+template<typename T>
+const T& Matrix<T>::operator()(int row, int col)const {
+	return p_[row*sizeY_ + col];
 }
 // operator +=
 template<typename T>
@@ -160,7 +165,7 @@ Matrix<T>& Matrix<T>::operator*=(const Matrix<T>& rhs) {
 }
 
 template<typename T>
-Matrix<T>& Matrix<T>::inverseDiagonal() const{
+Matrix<T> Matrix<T>::inverseDiagonal() const{
 	// extract the diagonal of matrix, and get the inverse matrix of the resulting diagonal matrix
 	assert(sizeX_ == sizeY_);		//rhs should be square matrix
 	Matrix<T> tmp(sizeX_,sizeY_);
@@ -232,7 +237,7 @@ Matrix<T> Matrix<T>::operator*(const Matrix<T>& rhs)const{		//pay attention to m
         for (int j=0;j<prod.sizeY_;j++){
             pl = p_+i*sizeY_;    //reset pointor
             pr = rhs.p_+j;
-            for(int m=0;m<lhs.sizeY_;m++){
+            for(int m=0;m<sizeY_;m++){
                 * pt += (*pl)*(*pr);
                 pl++;
                 pr+=rhs.sizeY_;
@@ -293,4 +298,3 @@ T* getbegin(const Matrix<T>& m) {
 	return m.p_;
 }
 
-#endif // !MATRIX_H

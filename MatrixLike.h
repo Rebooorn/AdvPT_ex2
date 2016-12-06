@@ -19,12 +19,12 @@ public:
 	virtual T & operator() (int r, int c) = 0;
 
 	/// other functions
-	virtual Derived inverseDiagonal( ) const = 0;
+	virtual Derived inverseDiagonal() const = 0;
 	// feel free to extend as required
 
-protected:
+protected:	
 };
 
 // MatrixLike d'tor implementation
 template<typename T, class Derived>
-inline MatrixLike<T, Derived>::~MatrixLike ( ) noexcept { }
+inline MatrixLike<T, Derived>::~MatrixLike() noexcept { }

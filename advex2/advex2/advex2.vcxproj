@@ -153,7 +153,7 @@
     <ClInclude Include="..\..\Vector.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Mytest.cpp" />
+    <ClCompile Include="..\..\Solver.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
