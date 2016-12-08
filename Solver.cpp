@@ -5,13 +5,14 @@
 //#include "Matrix.h"
 #include "Vector.h"
 #include "Stencil.h"
+#include <functional>
 
 
 #define PI 3.141592653589793
 
-template<typename T>
+template<typename T, class Derived, size_t numPoints>
 //void solve (const Matrix<T>& A, const Vector<T>& b, Vector<T>& u) {
-void solve(const MatrixLike<T, Stencil<T> >& A, const Vector<T>& b, Vector<T>& u) {
+void solve(const MatrixLike<T, Derived, numPoints, numPoints >& A, const Vector<T, numPoints>& b, Vector<T, numPoints>& u) {
 	const size_t numGridPoints = u.size( );
 	double initRes = (b - A * u).l2Norm( ); // determine the initial residual
 	double curRes = initRes;
@@ -41,9 +42,18 @@ void testFullMatrix (const int numGridPoints) {
 
 	std::cout << "Starting full matrix solver for " << numGridPoints << " grid points" << std::endl;
 
-	Matrix<double> A(numGridPoints, numGridPoints, 0.);
-	Vector<double> u(numGridPoints, 0.);
-	Vector<double> b(numGridPoints, 0.);
+	Matrix<double, numGridPoints, numGridPoints> A(numGridPoints, numGridPoints, 0.);
+	Vector<double, numGridPoints> u(numGridPoints, 0.);
+	//Vector<double> b(numGridPoints, 0.);
+	//use std::function to construct b
+	Vector<double> b(numGridPoints, [](int length) {
+		double* p = new double[length];
+		for (int x = 0; x < length; ++x) {
+			 p[x]= sin(2. * PI * (x / (double)(length - 1)));
+		}
+		return p;
+	});
+
 
 	A(0, 0) = 1.;
 	for (int x = 1; x < numGridPoints - 1; ++x) {
@@ -53,12 +63,12 @@ void testFullMatrix (const int numGridPoints) {
 	}
 	A(numGridPoints - 1, numGridPoints - 1) = 1.;
 
-	for (int x = 0; x < numGridPoints; ++x) {
-		b(x) = sin(2. * PI * (x / (double)(numGridPoints - 1)));
-	}
-/*
+	//for (int x = 0; x < numGridPoints; ++x) {
+	//	b(x) = sin(2. * PI * (x / (double)(numGridPoints - 1)));
+	//}
+
 	std::cout << "Initialization complete\n";
-	cout << A << endl;
+	//cout << A << endl;
 	// TODO: start timing
 	start = std::chrono::system_clock::now();
 	solve(A, b, u);
@@ -74,7 +84,7 @@ void testFullMatrix (const int numGridPoints) {
 	// for improved #1:		  size:  17  || 33   || 65    || 129
 	//					iteration:	     ||      ||       ||
 	//					time:		     ||      ||       ||         ms
-	*/
+	
 }
 
 void testStencil (const int numGridPoints) {
@@ -108,8 +118,8 @@ void testStencil (const int numGridPoints) {
 }
 
 int main(int argc, char** argv) {
-	testFullMatrix( 33 );
-	testStencil( 33 );
+	testFullMatrix( 65 );
+	testStencil( 65 );
 
 	return 0;
 }

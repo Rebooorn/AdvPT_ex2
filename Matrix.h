@@ -7,23 +7,23 @@ using std::endl;
 using std::cout;
 using std::ostream;
 
-template<typename T, class Derived> class MatrixLike;
-template<typename T> class Matrix;
-template<typename T> class Vector;
+template<typename T, class Derived, size_t rows, size_t cols> class MatrixLike;
+template<typename T, size_t rows, size_t cols> class Matrix;
+template<typename T, size_t lengths> class Vector;
 template<typename T> class Stencil;
 template<typename T> Matrix<T> operator+ (const Matrix<T>& lhs, const Matrix<T>& rhs);
 template<typename T> Matrix<T> operator- (const Matrix<T>& lhs, const Matrix<T>& rhs);
 template<typename T> bool operator== (const Matrix<T>& lhs, const Matrix<T>& rhs);
 template<typename T> bool operator!= (const Matrix<T>& lhs, const Matrix<T>& rhs);
 
-template<typename T>
-class Matrix: public MatrixLike< T,Matrix<T> >{
+template<typename T, size_t rows, size_t cols>
+class Matrix: public MatrixLike< T,Matrix<T, rows, cols>, rows, cols>{
 	public:
 		friend class Vector<T>;
 		friend class Stencil<T>;
 		//use 1-dimension array to store matrix
 		Matrix();// default construct creates a 4*4 matrix of 1;
-		Matrix(int sizeX,int sizeY,T init = 1);// assignment constructor
+		Matrix(int sizeX[rows],int sizeY[cols],T init = 1);// assignment constructor
 		Matrix(const Matrix& orig);//copy assignment
 		~Matrix();//delete constructor
         Matrix& operator=(const Matrix &rhs);//operator =
@@ -66,8 +66,8 @@ Matrix<T>::Matrix():sizeX_(4),sizeY_(4),init_(1){
 }
 
 //assignment constructor
-template<typename T>
-Matrix<T>::Matrix(int sizeX,int sizeY,T init):sizeX_(sizeX),sizeY_(sizeY),init_(init){
+template<typename Tsize_t rows, size_t cols>
+Matrix<T>::Matrix(int sizeX[rows],int sizeY[cols],T init):sizeX_(sizeX),sizeY_(sizeY),init_(init){
    // cout<< "normal constructor"<<endl;
     p_ =new T[sizeX_*sizeY_];
     for(int i=0;i<sizeX_*sizeY_;i++){

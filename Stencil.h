@@ -6,12 +6,12 @@
 #include <vector>
 
 #include "MatrixLike.h"
-
+template<typename T, class Derived, size_t rows, size_t cols> class MatrixLike;
 template<typename T>
 using StencilEntry = std::pair<int, T>; // convenience type for stencil entries
 
 template<typename T>
-class Stencil: public MatrixLike< T,Stencil<T> > /* TODO: inherit MatrixLike */ {
+class Stencil: public MatrixLike<T, Stencil<T>,rows,cols > /* TODO: inherit MatrixLike */ {
 public:
 	Stencil(const std::vector<StencilEntry<T> >& boundaryEntries, const std::vector<StencilEntry<T> >& innerEntries)
 		: boundaryStencil_(boundaryEntries), innerStencil_(innerEntries) { }
@@ -84,9 +84,9 @@ T& Stencil<T>::operator() (int row, int col) {
 template<typename T>
 Vector<T> Stencil<T>::operator* (const Vector<T>& rhs) const{
     //assert(size_==rhs.length_);
-    Vector<T> res(size_,0.);
+    Vector<T> res(rhs.length_,0.);
     res.p_[0]=rhs.p_[0]*boundaryStencil_[0].second;
-    rhs.p_[size_-1]=rhs.p_[size_-1]*boundaryStencil_[0].second;
+    res.p_[rhs.length_-1]=rhs.p_[rhs.length_-1]*boundaryStencil_[0].second;
     for (int i=1;i<rhs.length_-1;i++){
         res.p_[i]=rhs.p_[i-1]*innerStencil_[0].second+rhs.p_[i]*innerStencil_[1].second+rhs.p_[i+1]*innerStencil_[2].second;
     }
@@ -95,7 +95,7 @@ Vector<T> Stencil<T>::operator* (const Vector<T>& rhs) const{
 
 template<typename T>
 Stencil<T> Stencil<T>::inverseDiagonal() const{
-    Stencil<T> tmp( {{0,1.}},{{0, 1.0/this->innerStencil_[1].second}} );
+	Stencil<T> tmp({ {0,1.} }, { {-1,0}, {0, 1.0 / this->innerStencil_[1].second} ,{1,0} });
     tmp.setSize(size_);
     return tmp;
 

@@ -1,3 +1,297 @@
 ﻿  Solver.cpp
-  advex2.vcxproj -> D:\liuchang\workplace\AdvPT_ex2\advex2\Debug\advex2.exe
-  advex2.vcxproj -> D:\liuchang\workplace\AdvPT_ex2\advex2\Debug\advex2.pdb (Full PDB)
+d:\liuchang\workplace\advpt_ex2\matrix.h(14): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(11): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(15): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(11): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(16): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(11): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(17): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(11): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(22): error C2976: 'Vector': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(12): note: see declaration of 'Vector'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(52): note: see reference to class template instantiation 'Matrix<T,rows,cols>' being compiled
+d:\liuchang\workplace\advpt_ex2\matrix.h(22): error C2990: 'Vector': non-class template has already been declared as a class template
+  d:\liuchang\workplace\advpt_ex2\matrix.h(12): note: see declaration of 'Vector'
+d:\liuchang\workplace\advpt_ex2\matrix.h(36): error C2976: 'Vector': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(12): note: see declaration of 'Vector'
+d:\liuchang\workplace\advpt_ex2\matrix.h(42): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(20): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(57): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(20): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(66): error C2244: 'Matrix::Matrix': unable to match function definition to an existing declaration
+  d:\liuchang\workplace\advpt_ex2\matrix.h(57): note: see declaration of 'Matrix::Matrix'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(66): note: definition
+  d:\liuchang\workplace\advpt_ex2\matrix.h(66): note: 'Matrix::Matrix(void)'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(66): note: existing declarations
+  d:\liuchang\workplace\advpt_ex2\matrix.h(66): note: 'Matrix<T,rows,cols>::Matrix(const Matrix<T,rows,cols> &)'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(66): note: 'Matrix<T,rows,cols>::Matrix(int [rows],int [cols],T)'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(66): note: 'Matrix<T,rows,cols>::Matrix(void)'
+d:\liuchang\workplace\advpt_ex2\matrix.h(69): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+d:\liuchang\workplace\advpt_ex2\matrix.h(69): error C2146: syntax error: missing '>' before identifier 'rows'
+d:\liuchang\workplace\advpt_ex2\matrix.h(70): error C2065: 'T': undeclared identifier
+d:\liuchang\workplace\advpt_ex2\matrix.h(70): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(20): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(70): error C2955: 'Matrix': use of class template requires template argument list
+  d:\liuchang\workplace\advpt_ex2\matrix.h(20): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(70): error C2065: 'sizeX': undeclared identifier
+d:\liuchang\workplace\advpt_ex2\matrix.h(70): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+d:\liuchang\workplace\advpt_ex2\matrix.h(70): error C2065: 'sizeY': undeclared identifier
+d:\liuchang\workplace\advpt_ex2\matrix.h(70): error C2065: 'init': undeclared identifier
+d:\liuchang\workplace\advpt_ex2\matrix.h(70): error C2448: 'init_': function-style initializer appears to be a function definition
+d:\liuchang\workplace\advpt_ex2\matrix.h(79): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(20): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(81): error C2244: 'Matrix::~Matrix': unable to match function definition to an existing declaration
+  d:\liuchang\workplace\advpt_ex2\matrix.h(79): note: see declaration of 'Matrix::~Matrix'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(81): note: definition
+  d:\liuchang\workplace\advpt_ex2\matrix.h(81): note: 'Matrix::~Matrix(void)'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(81): note: existing declarations
+  d:\liuchang\workplace\advpt_ex2\matrix.h(81): note: 'Matrix<T,rows,cols>::~Matrix(void)'
+d:\liuchang\workplace\advpt_ex2\matrix.h(85): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(20): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(96): error C2244: 'Matrix::Matrix': unable to match function definition to an existing declaration
+  d:\liuchang\workplace\advpt_ex2\matrix.h(85): note: see declaration of 'Matrix::Matrix'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(96): note: definition
+  d:\liuchang\workplace\advpt_ex2\matrix.h(96): note: 'Matrix::Matrix(const Matrix &)'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(96): note: existing declarations
+  d:\liuchang\workplace\advpt_ex2\matrix.h(96): note: 'Matrix<T,rows,cols>::Matrix(const Matrix<T,rows,cols> &)'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(96): note: 'Matrix<T,rows,cols>::Matrix(int [rows],int [cols],T)'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(96): note: 'Matrix<T,rows,cols>::Matrix(void)'
+d:\liuchang\workplace\advpt_ex2\matrix.h(99): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(20): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(108): error C2244: 'Matrix::operator =': unable to match function definition to an existing declaration
+  d:\liuchang\workplace\advpt_ex2\matrix.h(99): note: see declaration of 'Matrix::operator ='
+  d:\liuchang\workplace\advpt_ex2\matrix.h(108): note: definition
+  d:\liuchang\workplace\advpt_ex2\matrix.h(108): note: 'Matrix &Matrix::operator =(const Matrix &)'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(108): note: existing declarations
+  d:\liuchang\workplace\advpt_ex2\matrix.h(108): note: 'Matrix<T,rows,cols> &Matrix<T,rows,cols>::operator =(const Matrix<T,rows,cols> &)'
+d:\liuchang\workplace\advpt_ex2\matrix.h(111): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(20): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(114): error C2244: 'Matrix::operator ()': unable to match function definition to an existing declaration
+  d:\liuchang\workplace\advpt_ex2\matrix.h(111): note: see declaration of 'Matrix::operator ()'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(114): note: definition
+  d:\liuchang\workplace\advpt_ex2\matrix.h(114): note: 'T &Matrix::operator ()(int,int)'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(114): note: existing declarations
+  d:\liuchang\workplace\advpt_ex2\matrix.h(114): note: 'const T &Matrix<T,rows,cols>::operator ()(int,int) const'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(114): note: 'T &Matrix<T,rows,cols>::operator ()(int,int)'
+d:\liuchang\workplace\advpt_ex2\matrix.h(117): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(20): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(119): error C2244: 'Matrix::operator ()': unable to match function definition to an existing declaration
+  d:\liuchang\workplace\advpt_ex2\matrix.h(117): note: see declaration of 'Matrix::operator ()'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(119): note: definition
+  d:\liuchang\workplace\advpt_ex2\matrix.h(119): note: 'const T &Matrix::operator ()(int,int) const'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(119): note: existing declarations
+  d:\liuchang\workplace\advpt_ex2\matrix.h(119): note: 'const T &Matrix<T,rows,cols>::operator ()(int,int) const'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(119): note: 'T &Matrix<T,rows,cols>::operator ()(int,int)'
+d:\liuchang\workplace\advpt_ex2\matrix.h(122): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(20): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(131): error C2244: 'Matrix::operator +=': unable to match function definition to an existing declaration
+  d:\liuchang\workplace\advpt_ex2\matrix.h(122): note: see declaration of 'Matrix::operator +='
+  d:\liuchang\workplace\advpt_ex2\matrix.h(131): note: definition
+  d:\liuchang\workplace\advpt_ex2\matrix.h(131): note: 'Matrix &Matrix::operator +=(const Matrix &)'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(131): note: existing declarations
+  d:\liuchang\workplace\advpt_ex2\matrix.h(131): note: 'Matrix<T,rows,cols> &Matrix<T,rows,cols>::operator +=(const Matrix<T,rows,cols> &)'
+d:\liuchang\workplace\advpt_ex2\matrix.h(134): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(20): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(149): error C2244: 'Matrix::operator -=': unable to match function definition to an existing declaration
+  d:\liuchang\workplace\advpt_ex2\matrix.h(134): note: see declaration of 'Matrix::operator -='
+  d:\liuchang\workplace\advpt_ex2\matrix.h(149): note: definition
+  d:\liuchang\workplace\advpt_ex2\matrix.h(149): note: 'Matrix &Matrix::operator -=(const Matrix &)'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(149): note: existing declarations
+  d:\liuchang\workplace\advpt_ex2\matrix.h(149): note: 'Matrix<T,rows,cols> &Matrix<T,rows,cols>::operator -=(const Matrix<T,rows,cols> &)'
+d:\liuchang\workplace\advpt_ex2\matrix.h(152): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(20): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(167): error C2244: 'Matrix::operator *=': unable to match function definition to an existing declaration
+  d:\liuchang\workplace\advpt_ex2\matrix.h(152): note: see declaration of 'Matrix::operator *='
+  d:\liuchang\workplace\advpt_ex2\matrix.h(167): note: definition
+  d:\liuchang\workplace\advpt_ex2\matrix.h(167): note: 'Matrix &Matrix::operator *=(const Matrix &)'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(167): note: existing declarations
+  d:\liuchang\workplace\advpt_ex2\matrix.h(167): note: 'Matrix<T,rows,cols> &Matrix<T,rows,cols>::operator *=(const Matrix<T,rows,cols> &)'
+d:\liuchang\workplace\advpt_ex2\matrix.h(170): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(20): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(183): error C2244: 'Matrix::inverseDiagonal': unable to match function definition to an existing declaration
+  d:\liuchang\workplace\advpt_ex2\matrix.h(170): note: see declaration of 'Matrix::inverseDiagonal'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(183): note: definition
+  d:\liuchang\workplace\advpt_ex2\matrix.h(183): note: 'Matrix Matrix::inverseDiagonal(void) const'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(183): note: existing declarations
+  d:\liuchang\workplace\advpt_ex2\matrix.h(183): note: 'Matrix<T,rows,cols> Matrix<T,rows,cols>::inverseDiagonal(void) const'
+d:\liuchang\workplace\advpt_ex2\matrix.h(187): error C2976: 'Vector': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(12): note: see declaration of 'Vector'
+d:\liuchang\workplace\advpt_ex2\matrix.h(187): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(20): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(200): error C2244: 'Matrix::operator *': unable to match function definition to an existing declaration
+  d:\liuchang\workplace\advpt_ex2\matrix.h(187): note: see declaration of 'Matrix::operator *'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(200): note: definition
+  d:\liuchang\workplace\advpt_ex2\matrix.h(200): note: 'Vector Matrix::operator *(const Vector &) const'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(200): note: existing declarations
+  d:\liuchang\workplace\advpt_ex2\matrix.h(200): note: 'Matrix<T,rows,cols> Matrix<T,rows,cols>::operator *(const Matrix<T,rows,cols> &) const'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(200): note: 'Vector Matrix<T,rows,cols>::operator *(const Vector &) const'
+d:\liuchang\workplace\advpt_ex2\matrix.h(204): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(20): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(219): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(20): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(231): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(20): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(251): error C2244: 'Matrix::operator *': unable to match function definition to an existing declaration
+  d:\liuchang\workplace\advpt_ex2\matrix.h(231): note: see declaration of 'Matrix::operator *'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(251): note: definition
+  d:\liuchang\workplace\advpt_ex2\matrix.h(251): note: 'Matrix Matrix::operator *(const Matrix &) const'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(251): note: existing declarations
+  d:\liuchang\workplace\advpt_ex2\matrix.h(251): note: 'Matrix<T,rows,cols> Matrix<T,rows,cols>::operator *(const Matrix<T,rows,cols> &) const'
+  d:\liuchang\workplace\advpt_ex2\matrix.h(251): note: 'Vector Matrix<T,rows,cols>::operator *(const Vector &) const'
+d:\liuchang\workplace\advpt_ex2\matrix.h(255): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(20): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(270): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(20): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(292): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(20): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\matrix.h(299): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrix.h(20): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\vector.h(10): error C2976: 'Vector': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\vector.h(8): note: see declaration of 'Vector'
+d:\liuchang\workplace\advpt_ex2\vector.h(11): error C2976: 'Vector': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\vector.h(8): note: see declaration of 'Vector'
+d:\liuchang\workplace\advpt_ex2\vector.h(21): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\vector.h(7): note: see declaration of 'Matrix'
+  d:\liuchang\workplace\advpt_ex2\vector.h(36): note: see reference to class template instantiation 'Vector<T,lengths>' being compiled
+d:\liuchang\workplace\advpt_ex2\vector.h(21): error C2990: 'Matrix': non-class template has already been declared as a class template
+  d:\liuchang\workplace\advpt_ex2\vector.h(7): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\vector.h(30): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\vector.h(7): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\vector.h(40): error C2976: 'Vector': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\vector.h(15): note: see declaration of 'Vector'
+d:\liuchang\workplace\advpt_ex2\vector.h(40): error C2244: 'Vector::Vector': unable to match function definition to an existing declaration
+  d:\liuchang\workplace\advpt_ex2\vector.h(40): note: see declaration of 'Vector::Vector'
+  d:\liuchang\workplace\advpt_ex2\vector.h(40): note: definition
+  d:\liuchang\workplace\advpt_ex2\vector.h(40): note: 'Vector::Vector(void)'
+  d:\liuchang\workplace\advpt_ex2\vector.h(40): note: existing declarations
+  d:\liuchang\workplace\advpt_ex2\vector.h(40): note: 'Vector<T,lengths>::Vector(int,std::function<T*(int)>)'
+  d:\liuchang\workplace\advpt_ex2\vector.h(40): note: 'Vector<T,lengths>::Vector(const Vector<T,lengths> &)'
+  d:\liuchang\workplace\advpt_ex2\vector.h(40): note: 'Vector<T,lengths>::Vector(int,T)'
+  d:\liuchang\workplace\advpt_ex2\vector.h(40): note: 'Vector<T,lengths>::Vector(void)'
+d:\liuchang\workplace\advpt_ex2\vector.h(43): error C2976: 'Vector': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\vector.h(15): note: see declaration of 'Vector'
+d:\liuchang\workplace\advpt_ex2\vector.h(45): error C2244: 'Vector::Vector': unable to match function definition to an existing declaration
+  d:\liuchang\workplace\advpt_ex2\vector.h(43): note: see declaration of 'Vector::Vector'
+  d:\liuchang\workplace\advpt_ex2\vector.h(45): note: definition
+  d:\liuchang\workplace\advpt_ex2\vector.h(45): note: 'Vector::Vector(int,T)'
+  d:\liuchang\workplace\advpt_ex2\vector.h(45): note: existing declarations
+  d:\liuchang\workplace\advpt_ex2\vector.h(45): note: 'Vector<T,lengths>::Vector(int,std::function<T*(int)>)'
+  d:\liuchang\workplace\advpt_ex2\vector.h(45): note: 'Vector<T,lengths>::Vector(const Vector<T,lengths> &)'
+  d:\liuchang\workplace\advpt_ex2\vector.h(45): note: 'Vector<T,lengths>::Vector(int,T)'
+  d:\liuchang\workplace\advpt_ex2\vector.h(45): note: 'Vector<T,lengths>::Vector(void)'
+d:\liuchang\workplace\advpt_ex2\vector.h(48): error C2976: 'Vector': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\vector.h(15): note: see declaration of 'Vector'
+d:\liuchang\workplace\advpt_ex2\vector.h(57): error C2244: 'Vector::Vector': unable to match function definition to an existing declaration
+  d:\liuchang\workplace\advpt_ex2\vector.h(48): note: see declaration of 'Vector::Vector'
+  d:\liuchang\workplace\advpt_ex2\vector.h(57): note: definition
+  d:\liuchang\workplace\advpt_ex2\vector.h(57): note: 'Vector::Vector(const Vector &)'
+  d:\liuchang\workplace\advpt_ex2\vector.h(57): note: existing declarations
+  d:\liuchang\workplace\advpt_ex2\vector.h(57): note: 'Vector<T,lengths>::Vector(int,std::function<T*(int)>)'
+  d:\liuchang\workplace\advpt_ex2\vector.h(57): note: 'Vector<T,lengths>::Vector(const Vector<T,lengths> &)'
+  d:\liuchang\workplace\advpt_ex2\vector.h(57): note: 'Vector<T,lengths>::Vector(int,T)'
+  d:\liuchang\workplace\advpt_ex2\vector.h(57): note: 'Vector<T,lengths>::Vector(void)'
+d:\liuchang\workplace\advpt_ex2\vector.h(60): error C2976: 'Vector': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\vector.h(15): note: see declaration of 'Vector'
+d:\liuchang\workplace\advpt_ex2\vector.h(70): error C2244: 'Vector::Vector': unable to match function definition to an existing declaration
+  d:\liuchang\workplace\advpt_ex2\vector.h(60): note: see declaration of 'Vector::Vector'
+  d:\liuchang\workplace\advpt_ex2\vector.h(70): note: definition
+  d:\liuchang\workplace\advpt_ex2\vector.h(70): note: 'Vector::Vector(int,std::function<T*(int)>)'
+  d:\liuchang\workplace\advpt_ex2\vector.h(70): note: existing declarations
+  d:\liuchang\workplace\advpt_ex2\vector.h(70): note: 'Vector<T,lengths>::Vector(int,std::function<T*(int)>)'
+  d:\liuchang\workplace\advpt_ex2\vector.h(70): note: 'Vector<T,lengths>::Vector(const Vector<T,lengths> &)'
+  d:\liuchang\workplace\advpt_ex2\vector.h(70): note: 'Vector<T,lengths>::Vector(int,T)'
+  d:\liuchang\workplace\advpt_ex2\vector.h(70): note: 'Vector<T,lengths>::Vector(void)'
+d:\liuchang\workplace\advpt_ex2\vector.h(73): error C2976: 'Vector': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\vector.h(15): note: see declaration of 'Vector'
+d:\liuchang\workplace\advpt_ex2\vector.h(75): error C2244: 'Vector::~Vector': unable to match function definition to an existing declaration
+  d:\liuchang\workplace\advpt_ex2\vector.h(73): note: see declaration of 'Vector::~Vector'
+  d:\liuchang\workplace\advpt_ex2\vector.h(75): note: definition
+  d:\liuchang\workplace\advpt_ex2\vector.h(75): note: 'Vector::~Vector(void)'
+  d:\liuchang\workplace\advpt_ex2\vector.h(75): note: existing declarations
+  d:\liuchang\workplace\advpt_ex2\vector.h(75): note: 'Vector<T,lengths>::~Vector(void)'
+d:\liuchang\workplace\advpt_ex2\vector.h(79): error C2976: 'Vector': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\vector.h(15): note: see declaration of 'Vector'
+d:\liuchang\workplace\advpt_ex2\vector.h(87): error C2244: 'Vector::operator =': unable to match function definition to an existing declaration
+  d:\liuchang\workplace\advpt_ex2\vector.h(79): note: see declaration of 'Vector::operator ='
+  d:\liuchang\workplace\advpt_ex2\vector.h(87): note: definition
+  d:\liuchang\workplace\advpt_ex2\vector.h(87): note: 'Vector &Vector::operator =(const Vector &)'
+  d:\liuchang\workplace\advpt_ex2\vector.h(87): note: existing declarations
+  d:\liuchang\workplace\advpt_ex2\vector.h(87): note: 'Vector<T,lengths> &Vector<T,lengths>::operator =(const Matrix<T,lengths,1> &)'
+  d:\liuchang\workplace\advpt_ex2\vector.h(87): note: 'Vector<T,lengths> &Vector<T,lengths>::operator =(const Vector<T,lengths> &)'
+d:\liuchang\workplace\advpt_ex2\vector.h(90): error C2976: 'Vector': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\vector.h(15): note: see declaration of 'Vector'
+d:\liuchang\workplace\advpt_ex2\vector.h(90): error C2976: 'Matrix': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\vector.h(7): note: see declaration of 'Matrix'
+d:\liuchang\workplace\advpt_ex2\vector.h(98): error C2244: 'Vector::operator =': unable to match function definition to an existing declaration
+  d:\liuchang\workplace\advpt_ex2\vector.h(90): note: see declaration of 'Vector::operator ='
+  d:\liuchang\workplace\advpt_ex2\vector.h(98): note: definition
+  d:\liuchang\workplace\advpt_ex2\vector.h(98): note: 'Vector &Vector::operator =(const Matrix<T,lengths,1> &)'
+  d:\liuchang\workplace\advpt_ex2\vector.h(98): note: existing declarations
+  d:\liuchang\workplace\advpt_ex2\vector.h(98): note: 'Vector<T,lengths> &Vector<T,lengths>::operator =(const Matrix<T,lengths,1> &)'
+  d:\liuchang\workplace\advpt_ex2\vector.h(98): note: 'Vector<T,lengths> &Vector<T,lengths>::operator =(const Vector<T,lengths> &)'
+d:\liuchang\workplace\advpt_ex2\vector.h(101): error C2976: 'Vector': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\vector.h(15): note: see declaration of 'Vector'
+d:\liuchang\workplace\advpt_ex2\vector.h(111): error C2976: 'Vector': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\vector.h(15): note: see declaration of 'Vector'
+d:\liuchang\workplace\advpt_ex2\vector.h(121): error C2976: 'Vector': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\vector.h(15): note: see declaration of 'Vector'
+d:\liuchang\workplace\advpt_ex2\vector.h(123): error C2244: 'Vector::operator ()': unable to match function definition to an existing declaration
+  d:\liuchang\workplace\advpt_ex2\vector.h(121): note: see declaration of 'Vector::operator ()'
+  d:\liuchang\workplace\advpt_ex2\vector.h(123): note: definition
+  d:\liuchang\workplace\advpt_ex2\vector.h(123): note: 'T &Vector::operator ()(int) const'
+  d:\liuchang\workplace\advpt_ex2\vector.h(123): note: existing declarations
+  d:\liuchang\workplace\advpt_ex2\vector.h(123): note: 'T &Vector<T,lengths>::operator ()(int) const'
+d:\liuchang\workplace\advpt_ex2\vector.h(126): error C2976: 'Vector': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\vector.h(15): note: see declaration of 'Vector'
+d:\liuchang\workplace\advpt_ex2\vector.h(132): error C2244: 'Vector::l2Norm': unable to match function definition to an existing declaration
+  d:\liuchang\workplace\advpt_ex2\vector.h(126): note: see declaration of 'Vector::l2Norm'
+  d:\liuchang\workplace\advpt_ex2\vector.h(132): note: definition
+  d:\liuchang\workplace\advpt_ex2\vector.h(132): note: 'double Vector::l2Norm(void) const'
+  d:\liuchang\workplace\advpt_ex2\vector.h(132): note: existing declarations
+  d:\liuchang\workplace\advpt_ex2\vector.h(132): note: 'double Vector<T,lengths>::l2Norm(void) const'
+d:\liuchang\workplace\advpt_ex2\vector.h(135): error C2976: 'Vector': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\vector.h(15): note: see declaration of 'Vector'
+d:\liuchang\workplace\advpt_ex2\vector.h(137): error C2244: 'Vector::size': unable to match function definition to an existing declaration
+  d:\liuchang\workplace\advpt_ex2\vector.h(135): note: see declaration of 'Vector::size'
+  d:\liuchang\workplace\advpt_ex2\vector.h(137): note: definition
+  d:\liuchang\workplace\advpt_ex2\vector.h(137): note: 'int Vector::size(void) const'
+  d:\liuchang\workplace\advpt_ex2\vector.h(137): note: existing declarations
+  d:\liuchang\workplace\advpt_ex2\vector.h(137): note: 'int Vector<T,lengths>::size(void) const'
+d:\liuchang\workplace\advpt_ex2\matrixlike.h(5): error C2976: 'Vector': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrixlike.h(5): note: see declaration of 'Vector'
+d:\liuchang\workplace\advpt_ex2\matrixlike.h(30): error C2976: 'MatrixLike': too few template arguments
+  d:\liuchang\workplace\advpt_ex2\matrixlike.h(8): note: see declaration of 'MatrixLike'
+d:\liuchang\workplace\advpt_ex2\matrixlike.h(30): error C2244: 'MatrixLike::~MatrixLike': unable to match function definition to an existing declaration
+  d:\liuchang\workplace\advpt_ex2\matrixlike.h(30): note: see declaration of 'MatrixLike::~MatrixLike'
+  d:\liuchang\workplace\advpt_ex2\matrixlike.h(30): note: definition
+  d:\liuchang\workplace\advpt_ex2\matrixlike.h(30): note: 'MatrixLike::~MatrixLike(void) noexcept'
+  d:\liuchang\workplace\advpt_ex2\matrixlike.h(30): note: existing declarations
+  d:\liuchang\workplace\advpt_ex2\matrixlike.h(30): note: 'MatrixLike<T,Derived,rows,cols>::~MatrixLike(void) noexcept'
+d:\liuchang\workplace\advpt_ex2\stencil.h(14): error C2065: 'rows': undeclared identifier
+  d:\liuchang\workplace\advpt_ex2\stencil.h(50): note: see reference to class template instantiation 'Stencil<T>' being compiled
+d:\liuchang\workplace\advpt_ex2\stencil.h(14): error C2065: 'cols': undeclared identifier
+d:\liuchang\workplace\advpt_ex2\stencil.h(14): error C2975: 'rows': invalid template argument for 'MatrixLike', expected compile-time constant expression
+  d:\liuchang\workplace\advpt_ex2\matrixlike.h(7): note: see declaration of 'rows'
+d:\liuchang\workplace\advpt_ex2\stencil.h(14): error C2975: 'cols': invalid template argument for 'MatrixLike', expected compile-time constant expression
+  d:\liuchang\workplace\advpt_ex2\matrixlike.h(7): note: see declaration of 'cols'
+d:\liuchang\workplace\advpt_ex2\solver.cpp(46): error C2975: 'rows': invalid template argument for 'Matrix', expected compile-time constant expression
+  d:\liuchang\workplace\advpt_ex2\matrix.h(19): note: see declaration of 'rows'
+d:\liuchang\workplace\advpt_ex2\solver.cpp(46): error C2975: 'cols': invalid template argument for 'Matrix', expected compile-time constant expression
+  d:\liuchang\workplace\advpt_ex2\matrix.h(19): note: see declaration of 'cols'
+d:\liuchang\workplace\advpt_ex2\matrix.h(38): error C2672: '+': no matching overloaded function found
+d:\liuchang\workplace\advpt_ex2\matrix.h(39): error C2672: '-': no matching overloaded function found
+d:\liuchang\workplace\advpt_ex2\matrix.h(42): error C2371: 'operator <<': redefinition; different basic types
+  d:\liuchang\workplace\advpt_ex2\matrix.h(255): note: see declaration of 'operator <<'
+d:\liuchang\workplace\advpt_ex2\matrix.h(43): error C2672: '==': no matching overloaded function found
+d:\liuchang\workplace\advpt_ex2\matrix.h(44): error C2672: '!=': no matching overloaded function found
+d:\liuchang\workplace\advpt_ex2\solver.cpp(46): error C2664: 'Matrix<double,0,0>::Matrix(const Matrix<double,0,0> &)': cannot convert argument 1 from 'const int' to 'int []'
+  d:\liuchang\workplace\advpt_ex2\solver.cpp(46): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
+d:\liuchang\workplace\advpt_ex2\solver.cpp(47): error C2514: 'Vector': class has no constructors
+  d:\liuchang\workplace\advpt_ex2\matrixlike.h(5): note: see declaration of 'Vector'
+d:\liuchang\workplace\advpt_ex2\solver.cpp(56): error C2514: 'Vector': class has no constructors
+  d:\liuchang\workplace\advpt_ex2\matrixlike.h(5): note: see declaration of 'Vector'
+d:\liuchang\workplace\advpt_ex2\solver.cpp(102): error C2514: 'Vector': class has no constructors
+  d:\liuchang\workplace\advpt_ex2\matrixlike.h(5): note: see declaration of 'Vector'
+d:\liuchang\workplace\advpt_ex2\solver.cpp(103): error C2514: 'Vector': class has no constructors
+  d:\liuchang\workplace\advpt_ex2\matrixlike.h(5): note: see declaration of 'Vector'
+d:\liuchang\workplace\advpt_ex2\solver.cpp(107): error C3848: expression having type 'Vector' would lose some const-volatile qualifiers in order to call 'T &Vector<T,lengths>::operator ()(int) const'

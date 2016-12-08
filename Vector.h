@@ -2,16 +2,17 @@
 
 #include "Matrix.h"
 #include "math.h"
+#include <functional>		
 
-template<typename T> class Matrix;
-template<typename T> class Vector;
+template<typename T, size_t rows, size_t cols> class Matrix;
+template<typename T, size_t lengths> class Vector;
 template<typename T> class Stencil;
 template<typename T> Vector<T> operator+ (const Vector<T>& lhs, const Vector<T>& rhs);
 template<typename T> Vector<T> operator- (const Vector<T>& lhs, const Vector<T>& rhs);
 
 
-template<typename T>
-class Vector : public Matrix<T> {
+template<typename T, size_t lengths>
+class Vector : public Matrix<T, lengths, 1> {
 private:
 	int length_;
 	T init_;
@@ -22,6 +23,7 @@ public:
 	Vector();
 	Vector(int length , T init = 1); //define by length, ;
 	Vector(const Vector& orig);		//define from another Vector
+	Vector(int length, std::function<T*(int)> f);	//functional constructor
 	~Vector();		//deconstructor;
 
 	Vector& operator=(const Vector&);
@@ -45,12 +47,25 @@ Vector<T>::Vector(int length,T init):
 template<typename T>
 Vector<T>::Vector(const Vector<T>& orig):
 	length_(orig.length_)
-{	//define by another vector
+ {	//define by another vector
 	this->p_ = new T[length_];
 	this->sizeX_ = length_;
 	this->sizeY_ = 1;
 	for (int i = 0;i < length_;i++) {
 		this->p_[i] = orig.p_[i];
+	}
+}
+
+template<typename T>
+Vector<T>::Vector(int length, std::function<T*(int)> f) :
+	length_(length)
+{
+	T* p = f(length_);
+	this->p_ = new T[length_];
+	this->sizeX_ = length_;
+	this->sizeY_ = 1;
+	for (int i = 0;i < length_;i++) {
+		this->p_[i] = p[i];
 	}
 }
 

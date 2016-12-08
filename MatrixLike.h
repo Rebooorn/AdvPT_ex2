@@ -4,7 +4,7 @@
 template<typename T>
 class Vector;
 
-template<typename T, class Derived>
+template<typename T, class Derived, size_t rows, size_t cols>
 class MatrixLike {
 public:
 	/// c'tor/ d'tor
