@@ -10,20 +10,20 @@ using std::ostream;
 template<typename T, class Derived, size_t rows, size_t cols> class MatrixLike;
 template<typename T, size_t rows, size_t cols> class Matrix;
 template<typename T, size_t lengths> class Vector;
-template<typename T> class Stencil;
-template<typename T> Matrix<T> operator+ (const Matrix<T>& lhs, const Matrix<T>& rhs);
-template<typename T> Matrix<T> operator- (const Matrix<T>& lhs, const Matrix<T>& rhs);
-template<typename T> bool operator== (const Matrix<T>& lhs, const Matrix<T>& rhs);
-template<typename T> bool operator!= (const Matrix<T>& lhs, const Matrix<T>& rhs);
+template<typename T, size_t rows, size_t cols> class Stencil;
+template<typename T, size_t rows, size_t cols> Matrix<T, rows, cols> operator+ (const Matrix<T, rows, cols>& lhs, const Matrix<T, rows, cols>& rhs);
+template<typename T, size_t rows, size_t cols> Matrix<T, rows, cols> operator- (const Matrix<T, rows, cols>& lhs, const Matrix<T, rows, cols>& rhs);
+template<typename T, size_t rows, size_t cols> bool operator== (const Matrix<T, rows, cols>& lhs, const Matrix<T, rows, cols>& rhs);
+template<typename T, size_t rows, size_t cols> bool operator!= (const Matrix<T, rows, cols>& lhs, const Matrix<T, rows, cols>& rhs);
 
 template<typename T, size_t rows, size_t cols>
 class Matrix: public MatrixLike< T,Matrix<T, rows, cols>, rows, cols>{
 	public:
-		friend class Vector<T>;
-		friend class Stencil<T>;
+		friend class Vector<T, rows>;
+		friend class Stencil<T, rows, cols>;
 		//use 1-dimension array to store matrix
 		Matrix();// default construct creates a 4*4 matrix of 1;
-		Matrix(int sizeX[rows],int sizeY[cols],T init = 1);// assignment constructor
+		Matrix(int sizeX,int sizeY,T init = 1);// assignment constructor
 		Matrix(const Matrix& orig);//copy assignment
 		~Matrix();//delete constructor
         Matrix& operator=(const Matrix &rhs);//operator =
@@ -33,15 +33,15 @@ class Matrix: public MatrixLike< T,Matrix<T, rows, cols>, rows, cols>{
 		Matrix& operator-=(const Matrix& rhs);
 		Matrix& operator*=(const Matrix& rhs);
 		Matrix inverseDiagonal()const;		//extract diagonal and get inverse
-		Vector<T> operator* (const Vector<T>&)const;
+		Vector<T, rows> operator* (const Vector<T,rows>&)const;
 		Matrix operator* (const Matrix&)const;
-		friend Matrix operator+<T>(const Matrix& lhs, const Matrix& rhs);// operator +
-		friend Matrix operator-<T>(const Matrix& lhs, const Matrix& rhs);//operator -
+		friend Matrix operator+<T, rows, cols>(const Matrix& lhs, const Matrix& rhs);// operator +
+		friend Matrix operator-<T, rows, cols>(const Matrix& lhs, const Matrix& rhs);//operator -
 		//friend Matrix operator*<T>(const Matrix& lhs, const Matrix& rhs);// operator *
 		 /*????*///friend ostream& operator<< <T>(ostream &os, const Matrix& rhs);//operator <<
-		template<typename T1> friend ostream& operator<< (ostream& os, const Matrix<T1>& rhs);
-		friend bool operator== <T>(const Matrix& lhs, const Matrix& rhs);//operator==
-		friend bool operator!= <T>(const Matrix& lhs, const Matrix& rhs);//operator!=
+		template<typename T1> friend ostream& operator<< (ostream& os, const Matrix<T1, rows,cols>& rhs);
+		friend bool operator== <T, rows, cols>(const Matrix& lhs, const Matrix& rhs);//operator==
+		friend bool operator!= <T, rows, cols>(const Matrix& lhs, const Matrix& rhs);//operator!=
 		friend T* getbegin(const Matrix& m);
 		// output matrix;
 
@@ -53,21 +53,18 @@ class Matrix: public MatrixLike< T,Matrix<T, rows, cols>, rows, cols>{
 
 
 //default constructor
-template<typename T>
-Matrix<T>::Matrix():sizeX_(4),sizeY_(4),init_(1){
+template<typename T, size_t rows, size_t cols>
+Matrix<T, rows, cols>::Matrix():sizeX_(4),sizeY_(4),init_(1){
    // cout<< "default constructor"<<endl;
     p_ =new T[sizeX_*sizeY_];
-
-
-
     for(int i=0;i<sizeX_*sizeY_;i++){
         p_[i]= init_;
     }
 }
 
 //assignment constructor
-template<typename Tsize_t rows, size_t cols>
-Matrix<T>::Matrix(int sizeX[rows],int sizeY[cols],T init):sizeX_(sizeX),sizeY_(sizeY),init_(init){
+template<typename T,size_t rows, size_t cols>
+Matrix<T, rows, cols>::Matrix(int sizeX,int sizeY,T init):sizeX_(sizeX),sizeY_(sizeY),init_(init){
    // cout<< "normal constructor"<<endl;
     p_ =new T[sizeX_*sizeY_];
     for(int i=0;i<sizeX_*sizeY_;i++){
@@ -75,14 +72,14 @@ Matrix<T>::Matrix(int sizeX[rows],int sizeY[cols],T init):sizeX_(sizeX),sizeY_(s
     }
 }
 //delete constructor
-template<typename T>
-Matrix<T>::~Matrix() {
+template<typename T, size_t rows, size_t cols>
+Matrix<T, rows, cols>::~Matrix() {
 	delete[] p_;
 }
 
 //copy assignment
-template<typename T>
-Matrix<T>::Matrix(const Matrix<T> &orig ):
+template<typename T, size_t rows, size_t cols>
+Matrix<T, rows, cols>::Matrix(const Matrix<T, rows, cols> &orig ):
 			sizeX_(orig.sizeX_),
 			sizeY_(orig.sizeY_)
 {
@@ -95,8 +92,8 @@ Matrix<T>::Matrix(const Matrix<T> &orig ):
 
 }
 //operator =
-template<typename T>
-Matrix<T>& Matrix<T>::operator=(const Matrix<T> &rhs){
+template<typename T, size_t rows, size_t cols>
+Matrix<T, rows, cols>& Matrix<T, rows, cols>::operator=(const Matrix<T, rows, cols> &rhs){
 //    cout<< "copy-assignment operator"<<endl;
     sizeX_= rhs.sizeX_;
     sizeY_= rhs.sizeY_;
@@ -107,19 +104,19 @@ Matrix<T>& Matrix<T>::operator=(const Matrix<T> &rhs){
     return *this;
 }
 //return element reference
-template<typename T>
-T& Matrix<T>::operator()(int row, int col){
+template<typename T, size_t rows, size_t cols>
+T& Matrix<T, rows, cols>::operator()(int row, int col){
  //   cout<< "element assignment"<<endl;
     return p_[row*sizeY_+col];
 }
 
-template<typename T>
-const T& Matrix<T>::operator()(int row, int col)const {
+template<typename T, size_t rows, size_t cols>
+const T& Matrix<T, rows, cols>::operator()(int row, int col)const {
 	return p_[row*sizeY_ + col];
 }
 // operator +=
-template<typename T>
-Matrix<T>& Matrix<T>::operator+=(const Matrix<T>& rhs){
+template<typename T, size_t rows, size_t cols>
+Matrix<T, rows, cols>& Matrix<T, rows, cols>::operator+=(const Matrix<T, rows, cols>& rhs){
 //    cout<< "add operation"<<endl;
 	assert(sizeX_ == rhs.sizeX_ && sizeY_ == rhs.sizeY_);
     for(int i=0;i<sizeX_;i++){
@@ -130,8 +127,8 @@ Matrix<T>& Matrix<T>::operator+=(const Matrix<T>& rhs){
     return *this;
 }
 // operator -=
-template<typename T>
-Matrix<T>& Matrix<T>::operator-=(const Matrix<T>& rhs) {
+template<typename T, size_t rows, size_t cols>
+Matrix<T, rows, cols>& Matrix<T, rows, cols>::operator-=(const Matrix<T, rows, cols>& rhs) {
 //	cout << "subtract operation" << endl;
 	assert(sizeX_ == rhs.sizeX_ && sizeY_ == rhs.sizeY_);
 
@@ -148,8 +145,8 @@ Matrix<T>& Matrix<T>::operator-=(const Matrix<T>& rhs) {
 	return *this;
 }
 
-template<typename T>
-Matrix<T>& Matrix<T>::operator*=(const Matrix<T>& rhs) {
+template<typename T, size_t rows, size_t cols>
+Matrix<T, rows, cols>& Matrix<T, rows, cols>::operator*=(const Matrix<T, rows, cols>& rhs) {
 //	cout << "multiply-self operation";
 	assert(sizeX_ == rhs.sizeX_ && sizeY_ != rhs.sizeY_);
 
@@ -166,11 +163,11 @@ Matrix<T>& Matrix<T>::operator*=(const Matrix<T>& rhs) {
 	return *this;
 }
 
-template<typename T>
-Matrix<T> Matrix<T>::inverseDiagonal() const{
+template<typename T, size_t rows, size_t cols>
+Matrix<T, rows, cols> Matrix<T, rows, cols>::inverseDiagonal() const{
 	// extract the diagonal of matrix, and get the inverse matrix of the resulting diagonal matrix
 	assert(sizeX_ == sizeY_);		//rhs should be square matrix
-	Matrix<T> tmp(sizeX_,sizeY_);
+	Matrix<T, rows, cols> tmp(sizeX_,sizeY_);
 
 	tmp.p_ = new T[sizeX_*sizeY_];
 	for (int i = 0;i < sizeX_;i++) {
@@ -183,10 +180,10 @@ Matrix<T> Matrix<T>::inverseDiagonal() const{
 }
 
 
-template<typename T>
-Vector<T> Matrix<T>::operator* (const Vector<T>& o) const{
+template<typename T, size_t rows, size_t cols>
+Vector<T, rows> Matrix<T, rows, cols>::operator* (const Vector<T, rows>& o) const{
 	assert(sizeY_ == o.length_);
-	Vector<T> res(sizeX_);
+	Vector<T, rows> res(sizeX_);
 	T tmp = 0;
 	for (int i = 0;i < sizeX_;i++) {
 		for (int j = 0;j < sizeY_;j++) {
@@ -200,14 +197,14 @@ Vector<T> Matrix<T>::operator* (const Vector<T>& o) const{
 }
 
 // operator +
-template<typename T>
-Matrix<T> operator+(const Matrix<T>& lhs, const Matrix<T>& rhs){
+template<typename T, size_t rows, size_t cols>
+Matrix<T, rows, cols> operator+(const Matrix<T, rows, cols>& lhs, const Matrix<T, rows, cols>& rhs){
 // improvement ==> change to pointer
 
 //    cout<< "add operation 2 "<<endl;
 	assert(lhs.sizeX_ == rhs.sizeX_ && lhs.sizeY_ == rhs.sizeY_);
 
-    Matrix<T> sum(lhs.sizeX_,lhs.sizeY_);
+    Matrix<T, rows, cols> sum(lhs.sizeX_,lhs.sizeY_);
     for (int i=0;i<lhs.sizeX_;i++){
         for(int j=0;j<lhs.sizeY_;j++){
             sum.p_[i*lhs.sizeY_+j]=lhs.p_[i*lhs.sizeY_+j]+rhs.p_[i*lhs.sizeY_+j];
@@ -215,25 +212,25 @@ Matrix<T> operator+(const Matrix<T>& lhs, const Matrix<T>& rhs){
     }
     return sum;
 }
-template<typename T>
-Matrix<T> operator-(const Matrix<T>& lhs, const Matrix<T>& rhs) {
+template<typename T, size_t rows, size_t cols>
+Matrix<T, rows, cols> operator-(const Matrix<T, rows, cols>& lhs, const Matrix<T, rows, cols>& rhs) {
 //	cout << "substract operation" << endl;
 	assert(lhs.sizeX_ == rhs.sizeX_ && lhs.sizeY_ == rhs.sizeY_);
 
-	Matrix<T> tmp = lhs;
+	Matrix<T, rows, cols> tmp = lhs;
 	tmp -= rhs;
 	return tmp;
 }
 
 
 //operator *
-template<typename T>
-Matrix<T> Matrix<T>::operator*(const Matrix<T>& rhs)const{		//pay attention to matrix size
+template<typename T, size_t rows, size_t cols>
+Matrix<T, rows, cols> Matrix<T, rows, cols>::operator*(const Matrix<T, rows, cols>& rhs)const{		//pay attention to matrix size
 //    cout<< "times operation"<<endl;
 	assert(sizeY_ == rhs.sizeX_);
 	T* pl=p_;	//left operand
     T* pr=rhs.p_;	//right oprand
-    Matrix<T> prod(sizeX_,rhs.sizeY_,0.0);
+    Matrix<T, rows, cols> prod(sizeX_,rhs.sizeY_,0.0);
     T* pt=prod.p_;		//product
     for (int i=0;i<prod.sizeX_;i++){
         for (int j=0;j<prod.sizeY_;j++){
@@ -251,8 +248,8 @@ Matrix<T> Matrix<T>::operator*(const Matrix<T>& rhs)const{		//pay attention to m
 }
 
 
-template<typename T>
-ostream& operator<<(ostream &os, const Matrix<T>& rhs){
+template<typename T, size_t rows, size_t cols>
+ostream& operator<<(ostream &os, const Matrix<T, rows, cols>& rhs){
 //    cout<< "Matrix output"<<endl;
 	T* p = rhs.p_;
 	for (int i = 0;i < rhs.sizeX_;i++) {
@@ -266,8 +263,8 @@ ostream& operator<<(ostream &os, const Matrix<T>& rhs){
 }
 
 // matrix identity
-template<typename T>
-bool operator==(const Matrix<T>& lhs, const Matrix<T>& rhs) {
+template<typename T, size_t rows, size_t cols>
+bool operator==(const Matrix<T, rows, cols>& lhs, const Matrix<T, rows, cols>& rhs) {
 //	cout << "Matrix compare" << endl;
 	assert(lhs.sizeX_ == rhs.sizeX_ && lhs.sizeY_ == rhs.sizeY_);
 
@@ -288,15 +285,15 @@ bool operator==(const Matrix<T>& lhs, const Matrix<T>& rhs) {
 	return flag;
 }
 
-template<typename T>
-bool operator!=(const Matrix<T>& lhs, const Matrix<T>& rhs) {
+template<typename T, size_t rows, size_t cols>
+bool operator!=(const Matrix<T, rows, cols>& lhs, const Matrix<T, rows, cols>& rhs) {
 //	cout << "matrix not equal" << endl;
 	return ~(lhs == rhs);
 }
 
 // get the data pointer of m
-template<typename T>
-T* getbegin(const Matrix<T>& m) {
+template<typename T, size_t rows, size_t cols>
+T* getbegin(const Matrix<T, rows, cols>& m) {
 	return m.p_;
 }
 
