@@ -142,6 +142,6 @@ template<size_t... testcases> void runTests(std::list<int>& expected) { runTests
 // actual main
 
 int main(int argc, char** argv) {
-	std::list<int> expected{ 743, 1676, 2982, 9142, 11941, 26874 };
-	runTestsImpl<33, 49, 65, 113, 129, 193>(expected);
+	std::list<int> expected{ 743, 1676 };
+	runTestsImpl<33, 49>(expected);
 }
