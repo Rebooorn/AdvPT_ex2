@@ -1,7 +1,7 @@
 #pragma once
 
 // forward declarations
-template<typename T>
+template<typename T, size_t lengths>
 class Vector;
 
 template<typename T, class Derived, size_t rows, size_t cols>
@@ -11,7 +11,7 @@ public:
 	virtual ~MatrixLike ( ) noexcept = 0; // pure virtual destructor
 
 	/// virtual operators
-	virtual Vector<T> operator* (const Vector<T> & o) const = 0;
+	virtual Vector<T, rows> operator* (const Vector<T, rows> & o) const = 0;
 	// feel free to extend as required
 
 	// TODO: optimize the () operator
@@ -26,5 +26,5 @@ protected:
 };
 
 // MatrixLike d'tor implementation
-template<typename T, class Derived>
-inline MatrixLike<T, Derived>::~MatrixLike() noexcept { }
+template<typename T, class Derived, size_t rows, size_t cols>
+inline MatrixLike<T, Derived, rows, cols>::~MatrixLike() noexcept { }
